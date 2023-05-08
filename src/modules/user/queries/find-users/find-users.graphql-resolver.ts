@@ -1,4 +1,4 @@
-import { Args, Query, Resolver } from 'type-graphql';
+import { Arg, Query, Resolver } from 'type-graphql';
 import { Service } from 'typedi';
 import { QueryBus } from '../../../../libs/core/query-bus/query-bus';
 import { UserPaginatedGraphqlResponseDto } from '../../dtos/graphql/user.paginated-gql-response.dto';
@@ -7,7 +7,6 @@ import { Result } from 'oxide.ts/dist';
 import User from '../../database/user.model';
 import { Paginated } from '../../../../libs/ddd';
 import { ResponseBase } from '../../../../libs/api/response.base';
-import { PaginatedParams } from '../../../../libs/ddd/query.base';
 
 @Service()
 @Resolver(() => UserPaginatedGraphqlResponseDto)
@@ -16,10 +15,10 @@ export class FindUsersGraphqlResolver {
 
   @Query(() => UserPaginatedGraphqlResponseDto)
   async findUsers(
-    @Args()
-    options: PaginatedParams<FindUsersQuery>,
+    @Arg('name', { nullable: true })
+    name?: string,
   ): Promise<UserPaginatedGraphqlResponseDto> {
-    const query = new FindUsersQuery(options);
+    const query = new FindUsersQuery({ name });
     const result: Result<Paginated<User>, Error> = await this.queryBus.execute(
       query,
     );

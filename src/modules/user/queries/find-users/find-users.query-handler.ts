@@ -25,7 +25,8 @@ export class FindUsersQueryHandler implements IQueryHandler {
     const users = await User.findAndCountAll({
       where: {
         name: {
-          [Op.like]: [`%${name}%`],
+          // name puede ser undefined, por eso se usa el operador ||
+          [Op.like]: `%${name || ''}%`,
         },
       },
       limit,

@@ -1,4 +1,4 @@
-import { Result } from 'oxide.ts/dist';
+import { Result } from 'oxide.ts';
 import { Service } from 'typedi';
 import { Args, Mutation, Query, Resolver } from 'type-graphql';
 
@@ -7,9 +7,9 @@ import { AggregateID } from '../../../../libs/ddd';
 
 import { UserAlreadyExistsError } from '../../domain/user.errors';
 
-import { IdGqlResponse } from './dtos/id.gql-response.dto';
 import { CreateUserGqlRequestDto } from './dtos/create-user.gql-request.dto';
 
+import { IdGqlResponse } from '../../../../libs/api/graphql/id.gql-response.dto';
 import { CreateUserCommand } from './create-user.command';
 
 @Service()

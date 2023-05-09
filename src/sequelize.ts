@@ -13,6 +13,8 @@ export default async function initSequelize(): Promise<void> {
   });
   await sequelize.authenticate();
   console.log('Sequelize initialized');
-  await sequelize.sync();
+  await sequelize.sync({
+    force: true,
+  });
   console.log('Sequelize synced');
 }

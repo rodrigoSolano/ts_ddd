@@ -18,7 +18,6 @@
     "eventemitter2": "^6.4.9",
     "express": "^4.18.2",
     "graphql": "^16.6.0",
-    "ioredis": "^5.3.2",
     "mysql2": "^3.2.4",
     "nanoid": "^4.0.2",
     "oxide.ts": "^1.1.0",

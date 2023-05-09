@@ -1,6 +1,6 @@
 import { Result } from 'oxide.ts';
 import { Service } from 'typedi';
-import { Args, Mutation, Query, Resolver } from 'type-graphql';
+import { Args, Mutation, Resolver } from 'type-graphql';
 
 import { CommandBus } from '../../../../libs/core/command-bus/command-bus';
 import { AggregateID } from '../../../../libs/ddd';
@@ -16,11 +16,6 @@ import { CreateUserCommand } from './create-user.command';
 @Resolver(() => IdGqlResponse)
 export class CreateUserGraphqlResolver {
   constructor(private readonly commandBus: CommandBus) {}
-
-  @Query(() => String)
-  async hello(): Promise<string> {
-    return 'Hello World';
-  }
 
   @Mutation(() => IdGqlResponse)
   async createUser(

@@ -39,7 +39,7 @@ export class CreateUserService implements ICommandHandler<CreateUserCommand> {
     try {
       /* Wrapping operation in a transaction to make sure
          that all domain events are processed atomically */
-      await this.userRepository.insert(user);
+      await this.userRepository.createWithAddress(user);
       return Ok(user.id);
     } catch (error: any) {
       if (error instanceof ConflictException) {

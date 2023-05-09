@@ -14,4 +14,25 @@ export default class UserModel extends Model {
 
   @HasOne(() => Address)
   address: Address;
+
+  // methods
+  public static async createWithAddress({
+    id,
+    name,
+    email,
+    street,
+    postalCode,
+    country,
+  }: {
+    id: string;
+    name: string;
+    email: string;
+    street: string;
+    postalCode: string;
+    country: string;
+  }): Promise<UserModel> {
+    const user = await UserModel.create({ id, name, email });
+    await Address.create({ street, postalCode, country, userId: user.id });
+    return user;
+  }
 }

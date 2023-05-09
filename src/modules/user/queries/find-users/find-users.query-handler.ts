@@ -5,8 +5,9 @@ import { FindUsersQuery } from './find-users.query';
 import { Paginated } from '../../../../libs/ddd';
 import { Ok, Result } from 'oxide.ts';
 
-import User from '../../database/models/user.model';
 import { Op } from 'sequelize';
+import UserModel from '../../database/models/user.model';
+import AddressModel from '../../database/models/address.model';
 
 @Service()
 @QueryHandler(FindUsersQuery)
@@ -19,19 +20,20 @@ export class FindUsersQueryHandler implements IQueryHandler {
    */
   async execute(
     query: FindUsersQuery,
-  ): Promise<Result<Paginated<User>, Error>> {
+  ): Promise<Result<Paginated<UserModel>, Error>> {
     const { limit, offset, name } = query;
 
-    const users = await User.findAndCountAll({
+    const users = await UserModel.findAndCountAll({
       where: {
         name: {
-          // name puede ser undefined, por eso se usa el operador ||
           [Op.like]: `%${name || ''}%`,
         },
       },
       limit,
       offset,
+      include: [{ model: AddressModel }],
     });
+    console.log(users.rows);
 
     return Ok(
       new Paginated({

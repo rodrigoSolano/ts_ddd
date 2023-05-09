@@ -19,6 +19,7 @@ export class FindProductsGraphqlResolver {
     name?: string,
   ): Promise<ProductPaginatedGraphqlResponseDto> {
     const query = new FindProductsQuery({ name });
+
     const result: Result<
       Paginated<ProductModel>,
       Error

@@ -59,4 +59,22 @@ export class SequelizeUserRepository
       console.log(error);
     }
   }
+
+  async createWithAddress(entity: UserEntity): Promise<void> {
+    try {
+      const copy = entity.getPropsCopy();
+      await UserModel.createWithAddress({
+        id: copy.id,
+        name: copy.name,
+        email: copy.email,
+        street: copy.address.street,
+        postalCode: copy.address.postalCode,
+        country: copy.address.country,
+      });
+      entity.publishEvents(this.logger, this.eventEmmiter);
+    } catch (error) {
+      this.logger.error(error);
+      console.log(error);
+    }
+  }
 }

@@ -4,7 +4,6 @@ import { QueryBus } from './query-bus';
 
 export function QueryHandler(queryClass: any) {
   return function (target: any): void {
-    const container = Container;
     Service()(target); // registramos la clase como un servicio de typedi
     const queryBus = Container.get(QueryBus);
     const handlerInstance = Container.get(target); // resolvemos las dependencias del handler con typedi

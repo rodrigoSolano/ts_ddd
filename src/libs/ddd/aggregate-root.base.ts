@@ -2,7 +2,6 @@ import { DomainEvent } from './domain-event.base';
 import { Entity } from './entity.base';
 import { EventEmitter2 } from 'eventemitter2';
 import { LoggerPort } from '../ports/logger.port';
-import { RequestContextService } from '../application/context/AppRequestContext';
 
 export abstract class AggregateRoot<EntityProps> extends Entity<EntityProps> {
   private _domainEvents: DomainEvent[] = [];
@@ -26,11 +25,7 @@ export abstract class AggregateRoot<EntityProps> extends Entity<EntityProps> {
     await Promise.all(
       this.domainEvents.map(async (event) => {
         logger.debug(
-          `[${RequestContextService.getRequestId()}] "${
-            event.constructor.name
-          }" event published for aggregate ${this.constructor.name} : ${
-            this.id
-          }`,
+          `"${event.constructor.name}" event published for aggregate ${this.constructor.name} : ${this.id}`,
         );
         return eventEmitter.emitAsync(event.constructor.name, event);
       }),

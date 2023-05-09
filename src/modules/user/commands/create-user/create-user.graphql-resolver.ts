@@ -11,8 +11,6 @@ import { IdGqlResponse } from './dtos/id.gql-response.dto';
 import { CreateUserGqlRequestDto } from './dtos/create-user.gql-request.dto';
 
 import { CreateUserCommand } from './create-user.command';
-import { UserCreatedDomainEvent } from '../../domain/events/user-created.domain-event';
-import { OnEvent } from '../../../../libs/core/event-emmiter/event-emmiter.decorator';
 
 @Service()
 @Resolver(() => IdGqlResponse)
@@ -34,10 +32,5 @@ export class CreateUserGraphqlResolver {
       await this.commandBus.execute(command);
 
     return new IdGqlResponse(id.unwrap());
-  }
-
-  @OnEvent(UserCreatedDomainEvent.name)
-  async onUserCreated(event: UserCreatedDomainEvent): Promise<void> {
-    console.log('User created, event: ', event);
   }
 }

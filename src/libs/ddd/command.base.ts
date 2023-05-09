@@ -1,4 +1,3 @@
-import { RequestContextService } from '../application/context/AppRequestContext';
 import { v4 } from 'uuid';
 import { ArgumentNotProvidedException } from '../exceptions';
 import { Guard } from '../guard';
@@ -42,10 +41,9 @@ export class Command {
         'Command props should not be empty',
       );
     }
-    const ctx = RequestContextService.getContext();
     this.id = props.id || v4();
     this.metadata = {
-      correlationId: props?.metadata?.correlationId || ctx.requestId,
+      correlationId: props?.metadata?.correlationId,
       causationId: props?.metadata?.causationId,
       timestamp: props?.metadata?.timestamp || Date.now(),
       userId: props?.metadata?.userId,

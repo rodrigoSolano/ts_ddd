@@ -27,7 +27,6 @@ export class SequelizeUserRepository
 
   async insert(entity: UserEntity): Promise<void> {
     try {
-      console.log('insert', entity);
       const copy = entity.getPropsCopy();
       await UserModel.create({
         id: entity.id,

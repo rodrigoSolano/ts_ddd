@@ -5,7 +5,7 @@ import { FindUsersQuery } from './find-users.query';
 import { Paginated } from '../../../../libs/ddd';
 import { Ok, Result } from 'oxide.ts';
 
-import User from '../../database/user.model';
+import User from '../../database/models/user.model';
 import { Op } from 'sequelize';
 
 @Service()

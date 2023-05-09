@@ -1,6 +1,8 @@
 import { Command, CommandProps } from '../../../../libs/ddd';
 
 export class CreateUserCommand extends Command {
+  readonly name: string;
+
   readonly email: string;
 
   readonly country: string;

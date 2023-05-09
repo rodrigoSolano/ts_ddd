@@ -4,7 +4,7 @@ import { QueryBus } from '../../../../libs/core/query-bus/query-bus';
 import { UserPaginatedGraphqlResponseDto } from '../../dtos/graphql/user.paginated-gql-response.dto';
 import { FindUsersQuery } from './find-users.query';
 import { Result } from 'oxide.ts/dist';
-import User from '../../database/user.model';
+import User from '../../database/models/user.model';
 import { Paginated } from '../../../../libs/ddd';
 import { ResponseBase } from '../../../../libs/api/response.base';
 

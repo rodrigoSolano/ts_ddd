@@ -4,6 +4,10 @@ import { IsAlphanumeric, IsEmail, IsString } from 'class-validator';
 @ArgsType()
 @InputType()
 export class CreateUserGqlRequestDto {
+  @IsString()
+  @Field()
+  readonly name: string;
+
   @IsEmail()
   @Field()
   readonly email: string;

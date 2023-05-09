@@ -2,13 +2,15 @@ import { Address } from './value-objects/address.value-object';
 
 // All properties that a User has
 export interface UserProps {
-  role: UserRoles;
+  name: string;
   email: string;
   address: Address;
+  role: UserRoles;
 }
 
 // Properties that are needed for a user creation
 export interface CreateUserProps {
+  name: string;
   email: string;
   address: Address;
 }

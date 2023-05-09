@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import User from './modules/user/database/user.model';
+import { dirname } from 'path';
 
 export default async function initSequelize(): Promise<void> {
   const sequelize = new Sequelize({
@@ -8,7 +8,7 @@ export default async function initSequelize(): Promise<void> {
     username: 'root',
     password: 'solano',
     storage: ':memory:',
-    models: [User],
+    models: [dirname(__dirname) + '/**/*.model.ts'],
     logging: false,
   });
   await sequelize.authenticate();

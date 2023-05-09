@@ -27,6 +27,7 @@ export class CreateUserService implements ICommandHandler<CreateUserCommand> {
     command: CreateUserCommand,
   ): Promise<Result<AggregateID, UserAlreadyExistsError>> {
     const user = UserEntity.create({
+      name: command.name,
       email: command.email,
       address: new Address({
         country: command.country,

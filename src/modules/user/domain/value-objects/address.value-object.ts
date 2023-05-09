@@ -14,16 +14,16 @@ export interface AddressProps {
 }
 
 export class Address extends ValueObject<AddressProps> {
-  get country(): string {
-    return this.props.country;
-  }
+  public country: string;
+  public postalCode: string;
+  public street: string;
 
-  get postalCode(): string {
-    return this.props.postalCode;
-  }
-
-  get street(): string {
-    return this.props.street;
+  constructor(props: AddressProps) {
+    super(props);
+    this.validate(props);
+    this.country = props.country;
+    this.postalCode = props.postalCode;
+    this.street = props.street;
   }
 
   /**

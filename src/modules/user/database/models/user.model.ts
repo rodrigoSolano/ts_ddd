@@ -9,7 +9,7 @@ export default class UserModel extends Model {
   @Column
   name: string;
 
-  @Column
+  @Column({ unique: true })
   email: string;
 
   @HasOne(() => Address)

@@ -13,6 +13,7 @@ export class CreateUserCommand extends Command {
 
   constructor(props: CommandProps<CreateUserCommand>) {
     super(props);
+    this.name = props.name;
     this.email = props.email;
     this.country = props.country;
     this.postalCode = props.postalCode;
